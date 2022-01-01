@@ -1,19 +1,23 @@
-<h2 class="title m-4">Template Form</h2>
+<h2 class="title m-4">Template <small>Form</small> </h2>
+
+<hr>
+
 <div class="container d-flex align-items-center justify-content-center border border-dark pb-5 mt-5 w-50">
-	<form class="w-75">
-  <div class="mt-5 mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+	<form class="w-75"(ngSubmit)="save(form)" #form="ngForm">
+    <div class="mt-5 mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="text" class="form-control" [class.is-invalid]="name.invalid && name.touched" name="name" [ngModel]="user.name" required minlength="5" #name="ngModel">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Surename</label>
+      <input type="text" class="form-control" name="surename" ngModel #surename="ngModel" [class.is-invalid]="surename.invalid && surename.touched" required minlength="5">
+    </div>
+    <div class="mt-5 mb-3">
+      <label class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
 </div>
