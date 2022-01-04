@@ -5,19 +5,51 @@
 <div class="container d-flex align-items-center justify-content-center border border-dark pb-5 mt-5 w-50">
 
 	<form class="w-75"(ngSubmit)="save(form)" #form="ngForm">
+
     <div class="mt-5 mb-3">
       <label for="exampleInputEmail1" class="form-label">Name</label>
-      <input type="text" class="form-control" [class.is-invalid]="name.invalid && name.touched" name="name" [ngModel]="user.name" required minlength="5" #name="ngModel">
+      <input 
+      class="form-control" 
+      type="text" 
+      name="name"
+      placeholder="Insert your name" 
+      required 
+      minlength="5" 
+      [class.is-invalid]="name.invalid && name.touched" 
+      ngModel
+      #name="ngModel">
     </div>
+
     <div class="mb-3">
       <label class="form-label">Surename</label>
-      <input type="text" class="form-control" name="surename" ngModel #surename="ngModel" [class.is-invalid]="surename.invalid && surename.touched" required minlength="5">
+      <input 
+      class="form-control" 
+      type="text" 
+      name="surename" 
+      placeholder="Insert your surename" 
+      required 
+      minlength="5"
+      ngModel 
+      [class.is-invalid]="surename.invalid && surename.touched" 
+      #surename="ngModel">
     </div>
+
     <div class="mt-5 mb-3">
       <label class="form-label">Email address</label>
-      <input type="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel #email="ngModel" [class.is-invalid]="email.invalid && email.touched">
+      <input 
+      class="form-control" 
+      type="email" 
+      name="email"
+      placeholder="email@email.com"
+      required 
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
+      [class.is-invalid]="email.invalid && email.touched"
+      ngModel
+      #email="ngModel">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+
   </form>
 
 </div>
