@@ -15,9 +15,10 @@
       placeholder="Insert your name" 
       required 
       minlength="5" 
-      [class.is-invalid]="name.invalid && name.touched" 
+      [ngClass]="{ 'is-invalid':name.invalid && name.touched }"
       ngModel
       #name="ngModel">
+      <span class="text-danger fadeIn" *ngIf="name.touched && name.invalid || form.touched && form.invalid" >Please enter your name</span>
     </div>
 
     <div class="mb-3">
@@ -28,10 +29,12 @@
       name="surename" 
       placeholder="Insert your surename" 
       required 
+      [ngModel]=""
       minlength="5"
-      ngModel 
-      [class.is-invalid]="surename.invalid && surename.touched" 
+      ngModel     
+      [ngClass]="{ 'is-invalid':surename.invalid && surename.touched }"
       #surename="ngModel">
+      <span class="text-danger fadeIn" *ngIf="surename.touched && surename.invalid || form.touched && form.invalid" >Please enter your surename</span>
     </div>
 
     <div class="mt-5 mb-3">
@@ -43,9 +46,10 @@
       placeholder="email@email.com"
       required 
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
-      [class.is-invalid]="email.invalid && email.touched"
+      [ngClass]="{ 'is-invalid':email.invalid && email.touched }"
       ngModel
       #email="ngModel">
+      <span class="text-danger fadeIn" *ngIf="email.touched && email.invalid || form.touched && form.invalid" >Please enter your email</span>
     </div>
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
