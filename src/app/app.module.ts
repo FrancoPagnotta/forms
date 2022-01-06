@@ -7,6 +7,7 @@ import { SharedModule } from './pages/shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveComponent } from './pages/reactive/reactive.component';
 import { TemplateComponent } from './pages/template/template.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TemplateComponent } from './pages/template/template.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

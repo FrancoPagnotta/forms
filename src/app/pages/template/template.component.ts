@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CountryServiceService } from 'src/app/services/country-service.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-template',
@@ -8,24 +10,31 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateComponent implements OnInit {
 
-  user = {
+  user: Object = {
     name: 'fran',
     surename: '',
     email: ''
   }
 
-  constructor() { }
+  countries: Array<any> = [];
+
+  constructor(private _countriesService: CountryServiceService) { }
 
   ngOnInit(): void {
+    this._countriesService.getCountries()
+      .subscribe(res => {
+        // this.countries = res;
+        console.log(this.countries);
+        console.log(res);
+    })
+
   }
 
   save(form: NgForm) {
-    console.log('submit disparado!', form);
-    console.log('value del formulario!', form.value);
-
-    if (form.invalid) {
-      Object.values(form.controls).forEach(control => control.markAsTouched());
+    if (form.invalid) Object.values(form.controls).forEach(control => control.markAsTouched());
+    else {
+      console.log(form);
+      form.reset();
     }
   }
-
 }

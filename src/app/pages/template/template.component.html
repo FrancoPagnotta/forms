@@ -18,7 +18,7 @@
       [ngClass]="{ 'is-invalid':name.invalid && name.touched }"
       ngModel
       #name="ngModel">
-      <span class="text-danger fadeIn" *ngIf="name.touched && name.invalid || form.touched && form.invalid" >Please enter your name</span>
+      <span class="text-danger fadeIn" *ngIf="name.touched && name.invalid" >Please 5 characters minimum</span>
     </div>
 
     <div class="mb-3">
@@ -34,7 +34,7 @@
       ngModel     
       [ngClass]="{ 'is-invalid':surename.invalid && surename.touched }"
       #surename="ngModel">
-      <span class="text-danger fadeIn" *ngIf="surename.touched && surename.invalid || form.touched && form.invalid" >Please enter your surename</span>
+      <span class="text-danger fadeIn" *ngIf="surename.touched && surename.invalid" >Please 5 characters minimum</span>
     </div>
 
     <div class="mt-5 mb-3">
@@ -49,7 +49,15 @@
       [ngClass]="{ 'is-invalid':email.invalid && email.touched }"
       ngModel
       #email="ngModel">
-      <span class="text-danger fadeIn" *ngIf="email.touched && email.invalid || form.touched && form.invalid" >Please enter your email</span>
+      <span class="text-danger fadeIn" *ngIf="email.touched && email.invalid" >Please enter a valid email like email@email.com</span>
+    </div>
+    
+    <div class="mt-5 mb-3">
+      <label class="form-label">Country</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option name="country" ngModel *ngFor="let country of countries"> {{ country.name }} </option>
+      </select>
     </div>
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
