@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CountryServiceService } from 'src/app/services/country-service.service';
 import { map } from 'rxjs/operators';
+import { Country } from 'src/app/models/country';
 
 @Component({
   selector: 'app-template',
@@ -10,31 +11,36 @@ import { map } from 'rxjs/operators';
 })
 export class TemplateComponent implements OnInit {
 
-  user: Object = {
+  user: any = {
     name: 'fran',
     surename: '',
-    email: ''
+    email: '', 
   }
 
-  countries: Array<any> = [];
+  countries: Array<Country> = [];
 
   constructor(private _countriesService: CountryServiceService) { }
 
   ngOnInit(): void {
     this._countriesService.getCountries()
       .subscribe(res => {
-        // this.countries = res;
-        console.log(this.countries);
-        console.log(res);
+        this.countries = res;
+        this.countries.unshift(
+          {
+            name: 'Select your country',
+            alpha3Code: ''
+          }
+        )
     })
-
   }
 
   save(form: NgForm) {
     if (form.invalid) Object.values(form.controls).forEach(control => control.markAsTouched());
-    else {
-      console.log(form);
-      form.reset();
-    }
+
+    console.log(form.value);
+    console.log(form.status);
+    console.log(form.controls);
+
+    form.reset();
   }
 }

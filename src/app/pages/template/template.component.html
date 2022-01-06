@@ -12,11 +12,11 @@
       class="form-control" 
       type="text" 
       name="name"
+      ngModel    
       placeholder="Insert your name" 
       required 
       minlength="5" 
       [ngClass]="{ 'is-invalid':name.invalid && name.touched }"
-      ngModel
       #name="ngModel">
       <span class="text-danger fadeIn" *ngIf="name.touched && name.invalid" >Please 5 characters minimum</span>
     </div>
@@ -26,7 +26,8 @@
       <input 
       class="form-control" 
       type="text" 
-      name="surename" 
+      name="surename"
+      ngModel    
       placeholder="Insert your surename" 
       required 
       [ngModel]=""
@@ -43,21 +44,30 @@
       class="form-control" 
       type="email" 
       name="email"
+      ngModel
       placeholder="email@email.com"
       required 
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
       [ngClass]="{ 'is-invalid':email.invalid && email.touched }"
-      ngModel
       #email="ngModel">
       <span class="text-danger fadeIn" *ngIf="email.touched && email.invalid" >Please enter a valid email like email@email.com</span>
     </div>
     
     <div class="mt-5 mb-3">
       <label class="form-label">Country</label>
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option name="country" ngModel *ngFor="let country of countries"> {{ country.name }} </option>
+      <select 
+      class="form-control" 
+      name="country"
+      ngModel
+      #country="ngModel"
+      required
+      [ngClass]="{ 'is-invalid':country.invalid && country.touched }"
+      [disabled]="countries.length === 0">
+        <option *ngFor="let countryItem of countries" [value]="countryItem.alpha3Code" [disabled]="countryItem.name === 'Select your country'">
+          {{ countryItem.name }}
+        </option>
       </select>
+      <span class="text-danger fadeIn" *ngIf="country.touched && country.invalid">Please select your country</span>
     </div>
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
