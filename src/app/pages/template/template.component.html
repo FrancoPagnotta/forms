@@ -3,7 +3,6 @@
 <hr>
 
 <div class="container d-flex align-items-center justify-content-center border border-dark pb-5 mt-5 w-50">
-
 	<form class="w-75"(ngSubmit)="save(form)" #form="ngForm">
 
     <div class="mt-5 mb-3">
@@ -16,7 +15,7 @@
       placeholder="Insert your name" 
       required 
       minlength="5" 
-      [ngClass]="{ 'is-invalid':name.invalid && name.touched }"
+      [ngClass]="{ 'is-invalid' : name.invalid && name.touched }"
       #name="ngModel">
       <span class="text-danger fadeIn" *ngIf="name.touched && name.invalid" >Please 5 characters minimum</span>
     </div>
@@ -33,7 +32,7 @@
       [ngModel]=""
       minlength="5"
       ngModel     
-      [ngClass]="{ 'is-invalid':surename.invalid && surename.touched }"
+      [ngClass]="{ 'is-invalid' : surename.invalid && surename.touched }"
       #surename="ngModel">
       <span class="text-danger fadeIn" *ngIf="surename.touched && surename.invalid" >Please 5 characters minimum</span>
     </div>
@@ -48,7 +47,7 @@
       placeholder="email@email.com"
       required 
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
-      [ngClass]="{ 'is-invalid':email.invalid && email.touched }"
+      [ngClass]="{ 'is-invalid' : email.invalid && email.touched }"
       #email="ngModel">
       <span class="text-danger fadeIn" *ngIf="email.touched && email.invalid" >Please enter a valid email like email@email.com</span>
     </div>
@@ -61,7 +60,7 @@
       ngModel
       #country="ngModel"
       required
-      [ngClass]="{ 'is-invalid':country.invalid && country.touched }"
+      [ngClass]="{ 'is-invalid' : country.invalid && country.touched }"
       [disabled]="countries.length === 0">
         <option *ngFor="let countryItem of countries" [value]="countryItem.alpha3Code" [disabled]="countryItem.name === 'Select your country'">
           {{ countryItem.name }}
@@ -69,9 +68,51 @@
       </select>
       <span class="text-danger fadeIn" *ngIf="country.touched && country.invalid">Please select your country</span>
     </div>
+  
+    <div class="mt-5 mb-3">
+      <label class="form-label">Genre</label>
+      <div class="">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" 
+          type="radio"  
+          id="inlineRadio1" 
+          value="male"
+          name="genre"
+          ngModel
+          required
+          #genre="ngModel"
+          [ngClass]="{ 'is-invalid' : genre.invalid && genre.touched }">
+          <label class="form-check-label" for="inlineRadio1">Male</label>
+        </div>
 
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" 
+          type="radio"  
+          id="inlineRadio2" 
+          value="female"
+          name="genre"
+          ngModel
+          required
+          #genre="ngModel"
+          [ngClass]="{ 'is-invalid' : genre.invalid && genre.touched }">
+          <label class="form-check-label" for="inlineRadio2">Female</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" 
+          type="radio"  
+          id="inlineRadio2" 
+          value="not specified"
+          name="genre"
+          ngModel
+          required
+          #genre="ngModel"
+          [ngClass]="{ 'is-invalid' : genre.invalid && genre.touched }">
+          <label class="form-check-label" for="inlineRadio2">I prefer not to say</label>
+        </div>
+      </div>
+    </div>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
-
+  
   </form>
-
 </div>

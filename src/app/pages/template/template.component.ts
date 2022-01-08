@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CountryServiceService } from 'src/app/services/country-service.service';
-import { map } from 'rxjs/operators';
 import { Country } from 'src/app/models/country';
 
 @Component({
@@ -11,10 +10,12 @@ import { Country } from 'src/app/models/country';
 })
 export class TemplateComponent implements OnInit {
 
-  user: any = {
+  user: any = { // por si quiero setear valores por defecto a los campos del formulario
     name: 'fran',
     surename: '',
     email: '', 
+    country: '',
+    genre: ''
   }
 
   countries: Array<Country> = [];
