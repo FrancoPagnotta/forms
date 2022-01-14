@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reactive.component.css']
 })
 export class ReactiveComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { 
     this.createForm();
@@ -18,9 +18,9 @@ export class ReactiveComponent implements OnInit {
 
   createForm(): void {
     this.form = this.formBuilder.group({
-      name: ['',[Validators.required, Validators.minLength(3)]],
+      name: ['',[Validators.required, Validators.minLength(3)]], // Esto son validadores SINCRONOS
       surename: ['',[Validators.required, Validators.minLength(3)]],
-      email: ['',[Validators.required]]
+      email: ['',[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]]
     });
   }
 
