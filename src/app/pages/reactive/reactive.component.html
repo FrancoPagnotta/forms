@@ -5,33 +5,66 @@
 <div class="container d-flex align-items-center justify-content-center border border-dark pb-5 mt-5 w-50">
 
 	<form form class="w-75" [formGroup]="form" (ngSubmit)="save()">
+    
     <div class="mt-5 mb-3">
       <label class="form-label">Name</label>
       <input type="text"
             class="form-control"
+            placeholder="Name"
             formControlName="name"
-       >
+            [class.is-invalid]="invalidFormControl('name')">
+      <span *ngIf="invalidFormControl('name')" class="text-danger"> Please enter your name </span>
     </div>
-    <div class="mb-3">
+    
+    <div class="mt-5 mb-3">
       <label class="form-label">Surename</label>
       <input type="text"
-       class="form-control"
-       formControlName="surename"
-       >
+            class="form-control"
+            placeholder="Surename"
+            formControlName="surename"
+            [class.is-invalid]="invalidFormControl('surename')">
+      <span *ngIf="invalidFormControl('surename')" class="text-danger"> Please enter your name </span>
     </div>
+    
+    <div class="mt-5 mb-3" formGroupName="adress">
+      <label class="form-label">Adress</label>
+      <div class="row g-3">
+        <div class="col">
+          <input type="text"
+                class="form-control"
+                placeholder="City"
+                formControlName="city"
+                [class.is-invalid]="invalidFormControl('adress')">
+          <span *ngIf="invalidFormControl('adress')" class="text-danger">Enter the city</span>
+        </div>
+          
+          <div class="col">
+            <input type="text"
+                  class="form-control"
+                  placeholder="Street"
+                  formControlName="street"
+                  [class.is-invalid]="invalidFormControl('adress')">  
+            <span *ngIf="invalidFormControl('adress')" class="text-danger">Enter the street</span>  
+          </div>
+      </div>
+    </div>
+
     <div class="mt-5 mb-3">
       <label class="form-label">Email address</label>
       <input type="email"
-       class="form-control"
-       formControlName="email"
-       >
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+            [class.is-invalid]="invalidFormControl('email')">
+       <span *ngIf="invalidFormControl('email')" class="text-danger"> Please enter an email like text@gmail.com </span>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  
+    <button type="submit" class="btn btn-primary mt-5">Submit</button>
   </form>
 
 </div>
-
 <hr>
+
 <pre>
   Estado del formulario: {{form.valid}}
   <br>
