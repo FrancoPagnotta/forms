@@ -34,8 +34,8 @@
                 class="form-control"
                 placeholder="City"
                 formControlName="city"
-                [class.is-invalid]="invalidFormControl('adress')">
-          <span *ngIf="invalidFormControl('adress')" class="text-danger">Enter the city</span>
+                [class.is-invalid]="invalidFormGroupControls('city')">
+          <span *ngIf="invalidFormGroupControls('city')" class="text-danger">Enter the city</span>
         </div>
           
           <div class="col">
@@ -43,8 +43,8 @@
                   class="form-control"
                   placeholder="Street"
                   formControlName="street"
-                  [class.is-invalid]="invalidFormControl('adress')">  
-            <span *ngIf="invalidFormControl('adress')" class="text-danger">Enter the street</span>  
+                  [class.is-invalid]="invalidFormGroupControls('street')">  
+            <span *ngIf="invalidFormGroupControls('street')" class="text-danger">Enter the street</span>  
           </div>
       </div>
     </div>
