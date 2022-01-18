@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -25,7 +25,8 @@ export class ReactiveComponent implements OnInit {
       adress: this.formBuilder.group({ // Nuestro segundo formGroup anidado 
         city: ['',Validators.required],
         street: ['',Validators.required]
-      })
+      }),
+      notes: this.formBuilder.array([])
     });
   }
 
@@ -38,9 +39,11 @@ export class ReactiveComponent implements OnInit {
   }
   
   save() {
-    Object.values(this.form.controls).forEach(control => {
-      control.markAllAsTouched()
-    });
+    if(this.form.invalid) {
+      return Object.values(this.form.controls).forEach(control => {
+        control.markAllAsTouched()
+      });
+    }
     this.form.reset();
   }
 
@@ -52,8 +55,23 @@ export class ReactiveComponent implements OnInit {
       adress: {
         city: 'Buenos Aires',
         street: 'libertador'
-      }
+      },
+      notes:[]
     });
+  }
+
+  // Getter
+  get notes() {
+    return this.form.get('notes') as FormArray;
+  }
+
+  // Hobbies
+  addHobbie() {
+    this.notes.push(this.formBuilder.control(''));
+  }
+
+  deleteHobbie(i:number) {
+    this.notes.removeAt(i);
   }
 
 }

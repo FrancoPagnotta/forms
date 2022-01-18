@@ -58,6 +58,41 @@
             [class.is-invalid]="invalidFormControl('email')">
        <span *ngIf="invalidFormControl('email')" class="text-danger"> Please enter an email like text@gmail.com </span>
     </div>
+
+    <div class="mt-5 mb-3">
+      <label class="form-label">Notes</label>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Hobbies</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="notes">
+            <tr *ngFor="let  control of notes.controls; let i = index">
+              <td> {{i + 1}} </td>
+              <td>
+                <input type="text"
+                        class="form-control"
+                        [formControlName]="i">
+              </td>
+              <td>
+                <button type="button"
+                        class="btn btn-danger"
+                        (click)="deleteHobbie(i)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" 
+                class="btn btn-success w-100"
+                (click)="addHobbie()">
+          Add
+        </button>
+    </div>
   
     <button type="submit" class="btn btn-primary mt-5">Submit</button>
   </form>
