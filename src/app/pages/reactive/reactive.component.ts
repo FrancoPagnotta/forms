@@ -11,19 +11,12 @@ export class ReactiveComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
     this.createForm();
+    this.loadDataToForm();
   }
 
   ngOnInit(): void {
   }
 
-  invalidFormControl(control: string): boolean { 
-    return this.form.controls[control].invalid && this.form.controls[control].touched
-  }
-
-  invalidFormGroupControls(control: string): boolean { 
-    return (this.form.controls['adress'] as FormGroup).controls[control].invalid && (this.form.controls['adress'] as FormGroup).controls[control].touched
-  }
-  
   createForm() {
     this.form = this.formBuilder.group({ // Nuestro primer formGroup
       name: ['',[Validators.required, Validators.minLength(3)]], // Esto son validadores SINCRONOS
@@ -36,11 +29,30 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  invalidFormControl(control: string): boolean { 
+    return this.form.controls[control].invalid && this.form.controls[control].touched
+  }
+
+  invalidFormGroupControls(control: string): boolean { 
+    return (this.form.controls['adress'] as FormGroup).controls[control].invalid && (this.form.controls['adress'] as FormGroup).controls[control].touched
+  }
+  
   save() {
-    // Object.values(this.form.controls).forEach(control => control.markAsTouched());
     Object.values(this.form.controls).forEach(control => {
       control.markAllAsTouched()
-      console.log(control)
+    });
+    this.form.reset();
+  }
+
+  loadDataToForm() {
+    this.form.setValue({
+      name: 'Franco',
+      surename: 'Franco',
+      email:'mail@gmail.com',
+      adress: {
+        city: 'Buenos Aires',
+        street: 'libertador'
+      }
     });
   }
 

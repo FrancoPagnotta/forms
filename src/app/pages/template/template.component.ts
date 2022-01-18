@@ -42,9 +42,9 @@ export class TemplateComponent implements OnInit {
     if (form.invalid) {
       Object.values(form.controls).forEach(control => control.markAsTouched());
     } else {
-      array.forEach(control => form.controls[control].reset());
-      form.controls['country'].setValue('');
-      form.controls['country'].markAsUntouched();
+      form.reset({
+        country: ''
+      })
     }
   }
 }
