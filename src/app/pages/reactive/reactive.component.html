@@ -60,6 +60,24 @@
     </div>
 
     <div class="mt-5 mb-3">
+      <label class="form-label">Password</label>
+      <input type="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+            [class.is-invalid]="password">
+    </div>
+
+    <div class="mt-5 mb-3">
+      <label class="form-label">Repeat Password</label>
+      <input type="password"
+            class="form-control"
+            placeholder="Repeat Password"
+            formControlName="repeatPassword"
+            [class.is-invalid]="repeatPassword">
+    </div>
+
+    <div class="mt-5 mb-3">
       <label class="form-label">Notes</label>
         <table class="table">
           <thead class="thead-dark">
