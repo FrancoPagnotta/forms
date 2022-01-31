@@ -24,6 +24,7 @@ export class ReactiveComponent implements OnInit {
       name: ['',[Validators.required, Validators.minLength(3)]], // Esto son validadores SINCRONOS
       surename: ['',[Validators.required, Validators.minLength(3), this.validators.noHerrera]],
       email: ['',[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
+      user: ['', , this.validators.userExist], // El segundo lugar es para las validaciones sincronas y el tercer lugar es para las validaciones asincronas
       password: ['',Validators.required],
       repeatPassword: ['',Validators.required],
       adress: this.formBuilder.group({ // Nuestro segundo formGroup anidado 

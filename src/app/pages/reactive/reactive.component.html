@@ -60,6 +60,16 @@
     </div>
 
     <div class="mt-5 mb-3">
+      <label class="form-label">User Name</label>
+      <input type="text"
+            class="form-control"
+            placeholder="User Name"
+            formControlName="user"
+            [class.is-invalid]="invalidFormControl('user')">
+       <span *ngIf="invalidFormControl('user')" class="text-danger"> Please enter your user name </span>
+    </div>
+
+    <div class="mt-5 mb-3">
       <label class="form-label">Password</label>
       <input type="password"
             class="form-control"
